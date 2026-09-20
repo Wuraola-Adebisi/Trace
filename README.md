@@ -1,75 +1,53 @@
-# React + TypeScript + Vite
+# Trace
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Trace turns messy information into a structured map of what matters and how it connects.
 
-Currently, two official plugins are available:
+Instead of producing another wall of summary text, Trace identifies the people, topics, decisions, questions, and relationships inside a piece of information and presents them as an interactive map.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## What it does
 
-## React Compiler
+You can give Trace unstructured information such as:
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Meeting notes
+- Research interviews
+- Project briefs
+- Lecture notes
+- Transcripts
+- Planning documents
 
-## Expanding the ESLint configuration
+Trace processes the content and surfaces:
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **Topics** — the ideas being discussed
+- **People** — the people mentioned or involved
+- **Decisions** — commitments, conclusions, or agreed actions
+- **Questions** — unresolved issues and things that still need answers
+- **Relationships** — connections between the information
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Each extracted item can be traced back to the source material, making it easier to understand not just *what* was identified, but *why* it matters.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## Why Trace
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+Most tools turn information into shorter information.
 
-```
+Trace takes a different approach: it tries to recover the structure inside it.
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+A meeting transcript, for example, might contain several people, competing ideas, decisions, unanswered questions, and dependencies scattered across dozens of paragraphs. A summary can compress that information, but it can also hide the relationships between those pieces.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Trace makes those relationships visible.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## How it works
 
-```
+```text
+Unstructured information
+        ↓
+Content processing
+        ↓
+Entity & topic extraction
+        ↓
+Decision & question detection
+        ↓
+Relationship mapping
+        ↓
+Interactive information map
+        ↓
+Source-backed insights
