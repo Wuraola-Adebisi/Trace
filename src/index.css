@@ -1,0 +1,87 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Schibsted Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --color-paper: #e2e9ef;
+  --color-panel: #f2f6f9;
+  --color-ink: #10233a;
+  --color-signal: #c8410b;
+  --color-mute: #56677a;
+  --color-line: #c2cfda;
+}
+
+html {
+  background: var(--color-paper);
+}
+
+body {
+  margin: 0;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--color-signal);
+  color: #fff;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-signal);
+  outline-offset: 2px;
+}
+
+/* Source sentences that caused a node to exist */
+.src-hit {
+  background: rgb(200 65 11 / 0.14);
+  box-shadow: inset 0 -2px 0 var(--color-signal);
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+@keyframes trace-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.trace-in {
+  animation: trace-in 0.45s ease-out both;
+}
+
+@keyframes trace-scan {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(400%);
+  }
+}
+
+.trace-scan {
+  animation: trace-scan 1.6s linear infinite;
+}
+
+@keyframes trace-flow {
+  to {
+    stroke-dashoffset: -16;
+  }
+}
+
+.trace-flow {
+  stroke-dasharray: 5 3;
+  animation: trace-flow 0.9s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .trace-in,
+  .trace-scan,
+  .trace-flow {
+    animation: none !important;
+  }
+}
