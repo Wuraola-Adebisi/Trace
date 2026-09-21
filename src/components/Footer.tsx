@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom'
-import Logo from './Logo'
+import { Link } from "react-router-dom";
+import Logo from "./Logo";
 
 export default function Footer() {
   return (
@@ -11,19 +11,37 @@ export default function Footer() {
             <span className="font-semibold tracking-tight">Trace</span>
           </div>
           <p className="mt-3 text-sm leading-relaxed text-mute">
-            Trace turns unstructured information into an interactive map of what matters and how it connects. This is a
-            demo that runs on example data and a local engine.
+            Trace turns unstructured information into an interactive map of what
+            matters and how it connects. It uses AI to identify key topics,
+            people, decisions, questions, and relationships, helping you
+            understand complex information and explore how its pieces fit
+            together.
           </p>
         </div>
-        <nav className="flex flex-wrap gap-x-8 gap-y-2 text-sm" aria-label="Footer">
-          <Link to="/how-it-works" className="text-mute hover:text-ink">How it works</Link>
-          <Link to="/examples" className="text-mute hover:text-ink">Examples</Link>
-          <Link to="/trace" className="text-mute hover:text-ink">Trace</Link>
-          <Link to="/about" className="text-mute hover:text-ink">About</Link>
-          <Link to="/privacy" className="text-mute hover:text-ink">Privacy</Link>
-          <Link to="/terms" className="text-mute hover:text-ink">Terms</Link>
+        <nav
+          className="flex flex-wrap gap-x-8 gap-y-2 text-sm"
+          aria-label="Footer"
+        >
+          <Link to="/how-it-works" className="text-mute hover:text-ink">
+            How it works
+          </Link>
+          <Link to="/examples" className="text-mute hover:text-ink">
+            Examples
+          </Link>
+          <Link to="/trace" className="text-mute hover:text-ink">
+            Trace
+          </Link>
+          <Link to="/about" className="text-mute hover:text-ink">
+            About
+          </Link>
+          <Link to="/privacy" className="text-mute hover:text-ink">
+            Privacy
+          </Link>
+          <Link to="/terms" className="text-mute hover:text-ink">
+            Terms
+          </Link>
         </nav>
       </div>
     </footer>
-  )
+  );
 }
