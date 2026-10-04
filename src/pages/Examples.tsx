@@ -37,13 +37,13 @@ export default function Examples() {
       </div>
 
       <p className="mt-6 text-sm text-mute">
-        These four results are prepared by hand.{' '}
+        These examples use curated source material so you can see the full Trace workflow without preparing your own document first.{' '}
         <Link to="/trace" className="text-signal underline underline-offset-4">
-          Paste your own text
+          Start with your own text
         </Link>{' '}
-        to see the local engine work on something new, or{' '}
+        to analyse something new, or{' '}
         <Link to={`/trace?example=${ex.id}`} className="text-signal underline underline-offset-4">
-          run this one as a live trace
+          open this example in Trace
         </Link>
         .
       </p>
