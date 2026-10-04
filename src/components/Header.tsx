@@ -8,14 +8,15 @@ const links = [
 ]
 
 const linkClass = ({ isActive }: { isActive: boolean }) =>
-  `border-b-2 py-1 text-sm transition-colors ${
+  `border-b-2 py-2 text-sm transition-colors sm:py-1 ${
     isActive ? 'border-signal text-ink' : 'border-transparent text-mute hover:text-ink'
   }`
 
 export default function Header() {
   return (
+    <>
     <header className="sticky top-0 z-40 border-b border-line bg-paper/90 backdrop-blur">
-      <div className="mx-auto flex h-14 max-w-[1480px] items-center justify-between px-4 sm:px-6">
+      <div className="mx-auto flex h-14 max-w-[1400px] items-center justify-between px-5 sm:px-8 lg:px-12">
         <Link to="/" className="flex items-center gap-2.5" aria-label="Trace home">
           <Logo />
           <span className="text-lg font-semibold tracking-tight">Trace</span>
@@ -29,18 +30,19 @@ export default function Header() {
         </nav>
         <Link
           to="/trace"
-          className="bg-ink px-4 py-2 text-sm font-medium text-paper transition-colors hover:bg-signal"
+          className="btn btn-sm btn-ink"
         >
           Try Trace
         </Link>
       </div>
-      <nav className="flex justify-center gap-6 border-t border-line py-2 sm:hidden" aria-label="Main mobile">
-        {links.map((l) => (
-          <NavLink key={l.to} to={l.to} className={linkClass}>
-            {l.label}
-          </NavLink>
-        ))}
-      </nav>
     </header>
+    <nav className="flex justify-center gap-6 border-b border-line sm:hidden" aria-label="Main mobile">
+      {links.map((l) => (
+        <NavLink key={l.to} to={l.to} className={linkClass}>
+          {l.label}
+        </NavLink>
+      ))}
+    </nav>
+    </>
   )
 }

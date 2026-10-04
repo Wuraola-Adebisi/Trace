@@ -22,7 +22,7 @@ export default function Examples() {
             role="tab"
             aria-selected={e.id === id}
             onClick={() => setId(e.id)}
-            className={`border-t-2 p-4 text-left transition-colors ${
+            className={`flex flex-col items-start border-t-2 p-4 text-left transition-colors sm:p-5 ${
               e.id === id ? 'border-signal bg-panel' : 'border-line hover:border-ink'
             }`}
           >

@@ -54,7 +54,7 @@ export default function HowItWorks() {
             role="tab"
             aria-selected={i === stage}
             onClick={() => setStage(i)}
-            className={`border-t-2 p-4 text-left transition-colors ${
+            className={`flex flex-col items-start border-t-2 p-4 text-left transition-colors sm:p-5 ${
               i === stage ? 'border-signal bg-panel' : 'border-line hover:border-ink'
             }`}
           >
@@ -70,23 +70,25 @@ export default function HowItWorks() {
           <Workspace result={result} content={input.content} />
         ) : (
           <div className="border border-line bg-panel">
-            <div className="flex h-10 items-center border-b border-line px-4 font-mono text-[11px] text-mute">
+            <div className="panel-head">
               {STAGES[stage].n} {STAGES[stage].name.toUpperCase()}: {caption}
             </div>
             {stage === 0 ? (
-              <div className="mx-auto h-[560px] max-w-3xl">
+              <div className="mx-auto h-[560px] max-w-3xl border-x border-line">
                 <SourcePanel title={result.title} content={input.content} />
               </div>
             ) : (
-              <div className="mx-auto max-w-3xl overflow-auto">
-                <TraceMap
-                  key={stage}
-                  result={result}
-                  selectedId={selectedId}
-                  onSelect={setSelectedId}
-                  showEdges={stage === 2}
-                  animate
-                />
+              <div className="map-dots overflow-auto">
+                <div className="mx-auto max-w-3xl">
+                  <TraceMap
+                    key={stage}
+                    result={result}
+                    selectedId={selectedId}
+                    onSelect={setSelectedId}
+                    showEdges={stage === 2}
+                    animate
+                  />
+                </div>
               </div>
             )}
           </div>

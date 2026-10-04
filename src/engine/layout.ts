@@ -34,8 +34,8 @@ export function nodeText(n: { label: string; kind: string }, isRoot: boolean): s
 }
 
 export function boxSize(label: string, isRoot: boolean) {
-  const cw = isRoot ? 8.4 : 6.7
-  const pad = isRoot ? 34 : 18
+  const cw = isRoot ? 9 : 7.2
+  const pad = isRoot ? 36 : 22
   return { w: Math.ceil(label.length * cw) + pad, h: isRoot ? 42 : 28 }
 }
 
@@ -114,8 +114,8 @@ export function layoutGraph(result: TraceResult): Layout {
     }
     const d = Math.min(depth.get(n.id) ?? 1, 2)
     const a = angle.get(n.id) ?? 0
-    const rx = d === 1 ? 195 : 300
-    const ry = d === 1 ? 155 : 290
+    const rx = d === 1 ? 205 : 305
+    const ry = d === 1 ? 160 : 292
     boxes[n.id] = { x: CX + rx * Math.cos(a), y: CY + ry * Math.sin(a), w, h }
   }
 
