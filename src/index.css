@@ -33,6 +33,13 @@ body {
   outline-offset: 2px;
 }
 
+@layer components {
+  /* One header style for Source, Map and Insight panels so baselines line up */
+  .panel-head {
+    @apply flex min-h-10 shrink-0 items-center justify-between gap-2 border-b border-line px-4 font-mono text-xs tracking-wide text-mute;
+  }
+}
+
 /* Source sentences that caused a node to exist */
 .src-hit {
   background: rgb(200 65 11 / 0.14);

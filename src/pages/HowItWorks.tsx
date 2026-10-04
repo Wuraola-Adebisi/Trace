@@ -70,7 +70,7 @@ export default function HowItWorks() {
           <Workspace result={result} content={input.content} />
         ) : (
           <div className="border border-line bg-panel">
-            <div className="flex h-10 items-center border-b border-line px-4 font-mono text-[11px] text-mute">
+            <div className="panel-head">
               {STAGES[stage].n} {STAGES[stage].name.toUpperCase()}: {caption}
             </div>
             {stage === 0 ? (

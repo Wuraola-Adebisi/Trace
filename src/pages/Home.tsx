@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import HeroDemo from '../components/HeroDemo'
+import { LAUNCH_EXAMPLE } from '../data/traceExamples'
 
 const PARTS = [
   {
@@ -27,8 +28,8 @@ const PARTS = [
 export default function Home() {
   return (
     <div>
-      <section className="mx-auto max-w-[1480px] px-4 pb-10 pt-14 sm:px-6 sm:pt-20">
-        <p className="inline-flex items-center gap-2 font-mono text-[11px] text-mute">
+      <section className="mx-auto max-w-[1480px] px-4 pb-12 pt-14 sm:px-6 sm:pb-16 sm:pt-20">
+        <p className="inline-flex items-center gap-2 font-mono text-xs tracking-wide text-mute">
           <span className="inline-block h-2 w-2 bg-signal" />
           AI INFORMATION MAPPING
         </p>
@@ -41,14 +42,14 @@ export default function Home() {
             decisions, and questions inside them.
           </p>
           <div className="flex flex-wrap gap-3">
-            <Link to="/examples" className="bg-signal px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-ink">
+            <Link to={`/trace?example=${LAUNCH_EXAMPLE.id}`} className="bg-signal px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-ink">
               Try an example
             </Link>
             <Link
-              to="/how-it-works"
+              to="/trace"
               className="border border-ink px-6 py-3 text-sm font-medium transition-colors hover:bg-ink hover:text-paper"
             >
-              How it works
+              Paste your own
             </Link>
           </div>
         </div>
@@ -58,7 +59,7 @@ export default function Home() {
         <HeroDemo />
       </section>
 
-      <section className="mx-auto mt-24 max-w-[1480px] px-4 sm:px-6">
+      <section className="mx-auto mt-16 max-w-[1480px] px-4 sm:mt-24 sm:px-6">
         <h2 className="max-w-2xl text-3xl font-semibold leading-tight tracking-tight sm:text-4xl">
           The structure was always in the text. Trace pulls it out.
         </h2>
@@ -73,7 +74,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="mx-auto mt-24 max-w-[1480px] px-4 sm:px-6">
+      <section className="mx-auto mt-16 max-w-[1480px] px-4 sm:mt-24 sm:px-6">
         <div className="flex flex-col gap-6 border border-ink bg-ink p-8 text-paper sm:p-12 md:flex-row md:items-center md:justify-between">
           <p className="max-w-xl text-2xl font-semibold leading-snug tracking-tight sm:text-3xl">
             Paste something messy and see what is in it.

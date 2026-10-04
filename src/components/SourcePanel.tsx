@@ -28,7 +28,7 @@ export default function SourcePanel({ title, content, highlight = [] }: Props) {
   let idx = -1
   return (
     <div className="flex h-full min-h-0 flex-col">
-      <div className="flex h-10 shrink-0 items-center justify-between border-b border-line px-4 font-mono text-[11px] text-mute">
+      <div className="panel-head">
         <span>SOURCE</span>
         <span>{total} sentences</span>
       </div>
@@ -47,9 +47,9 @@ export default function SourcePanel({ title, content, highlight = [] }: Props) {
                     if (el) refs.current.set(i, el)
                     else refs.current.delete(i)
                   }}
-                  className={hit ? 'src-hit text-ink' : hits.size > 0 ? 'text-ink/50' : ''}
+                  className={hit ? 'src-hit text-ink' : hits.size > 0 ? 'text-ink/65' : ''}
                 >
-                  {hit && <sup className="mr-1 font-mono text-[9px] font-medium text-signal">{i + 1}</sup>}
+                  {hit && <sup className="mr-1 font-mono text-[11px] font-medium text-signal">{i + 1}</sup>}
                   {s}{' '}
                 </span>
               )

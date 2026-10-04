@@ -8,12 +8,13 @@ const links = [
 ]
 
 const linkClass = ({ isActive }: { isActive: boolean }) =>
-  `border-b-2 py-1 text-sm transition-colors ${
+  `border-b-2 py-2 text-sm transition-colors sm:py-1 ${
     isActive ? 'border-signal text-ink' : 'border-transparent text-mute hover:text-ink'
   }`
 
 export default function Header() {
   return (
+    <>
     <header className="sticky top-0 z-40 border-b border-line bg-paper/90 backdrop-blur">
       <div className="mx-auto flex h-14 max-w-[1480px] items-center justify-between px-4 sm:px-6">
         <Link to="/" className="flex items-center gap-2.5" aria-label="Trace home">
@@ -34,13 +35,14 @@ export default function Header() {
           Try Trace
         </Link>
       </div>
-      <nav className="flex justify-center gap-6 border-t border-line py-2 sm:hidden" aria-label="Main mobile">
-        {links.map((l) => (
-          <NavLink key={l.to} to={l.to} className={linkClass}>
-            {l.label}
-          </NavLink>
-        ))}
-      </nav>
     </header>
+    <nav className="flex justify-center gap-6 border-b border-line sm:hidden" aria-label="Main mobile">
+      {links.map((l) => (
+        <NavLink key={l.to} to={l.to} className={linkClass}>
+          {l.label}
+        </NavLink>
+      ))}
+    </nav>
+    </>
   )
 }

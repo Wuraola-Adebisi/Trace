@@ -88,7 +88,7 @@ export default function TraceMap({ result, selectedId, onSelect, filter = 'all',
                       y={(a.y + b.y) / 2}
                       textAnchor="middle"
                       dominantBaseline="central"
-                      className="fill-signal font-mono text-[10px]"
+                      className="fill-signal font-mono text-[12px]"
                       style={{ paintOrder: 'stroke', stroke: 'var(--color-paper)', strokeWidth: 5 }}
                     >
                       {e.relation}
@@ -143,7 +143,7 @@ export default function TraceMap({ result, selectedId, onSelect, filter = 'all',
                   y={b.h / 2 + 0.5}
                   textAnchor="middle"
                   dominantBaseline="central"
-                  className={`${TEXT[n.kind]} ${isRoot ? 'font-sans text-[14px] font-semibold' : 'font-mono text-[11px]'}`}
+                  className={`${TEXT[n.kind]} ${isRoot ? 'font-sans text-[15px] font-semibold' : 'font-mono text-[12px]'}`}
                 >
                   {text}
                 </text>

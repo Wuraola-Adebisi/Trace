@@ -14,7 +14,7 @@ const IMPORTANCE: Record<string, string> = { high: 'High', medium: 'Medium', low
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <section className="mt-6 first:mt-0">
-      <h3 className="border-b border-line pb-2 font-mono text-[11px] text-mute">{title}</h3>
+      <h3 className="border-b border-line pb-2 font-mono text-xs tracking-wide text-mute">{title}</h3>
       <div className="mt-2">{children}</div>
     </section>
   )
@@ -25,10 +25,10 @@ function Row({ node, sub, onSelect }: { node: TraceNode; sub?: string; onSelect:
     <button
       type="button"
       onClick={() => onSelect(node.id)}
-      className="flex w-full items-baseline justify-between gap-3 py-1.5 text-left text-sm hover:text-signal"
+      className="flex w-full items-baseline justify-between gap-3 py-2.5 text-left text-sm hover:text-signal sm:py-1.5"
     >
       <span>{node.label.endsWith('\u2026') ? node.why : node.label}</span>
-      {sub && <span className="shrink-0 font-mono text-[10px] text-mute">{sub}</span>}
+      {sub && <span className="shrink-0 font-mono text-xs text-mute">{sub}</span>}
     </button>
   )
 }
@@ -45,7 +45,7 @@ export default function InsightPanel({ result, sentences, selectedId, onSelect }
 
   return (
     <div className="flex h-full min-h-0 flex-col">
-      <div className="flex h-10 shrink-0 items-center justify-between border-b border-line px-4 font-mono text-[11px] text-mute">
+      <div className="panel-head">
         <span>INSIGHT</span>
         {node && (
           <button type="button" onClick={() => onSelect(null)} className="text-signal hover:underline">
@@ -57,13 +57,13 @@ export default function InsightPanel({ result, sentences, selectedId, onSelect }
       <div className="min-h-0 flex-1 overflow-y-auto px-4 py-4" aria-live="polite">
         {node ? (
           <div>
-            <p className="font-mono text-[11px] text-signal">
+            <p className="font-mono text-xs tracking-wide text-signal">
               {L[node.kind]}
               {node.tag ? ` / ${node.tag}` : ''}
             </p>
             <h2 className="mt-1 text-2xl font-semibold leading-tight tracking-tight">{node.label}</h2>
             {node.role && <p className="mt-1 text-sm text-mute">{node.role}</p>}
-            <p className="mt-3 font-mono text-[11px] text-mute">
+            <p className="mt-3 font-mono text-xs tracking-wide text-mute">
               Found in {sources.length} {sources.length === 1 ? 'sentence' : 'sentences'}
               {node.when ? ` / ${node.when}` : ''}
               {' / '}
@@ -85,7 +85,7 @@ export default function InsightPanel({ result, sentences, selectedId, onSelect }
             </Section>
 
             <Section title="Source">
-              <p className="font-mono text-[11px] leading-relaxed text-mute">
+              <p className="font-mono text-xs tracking-wide leading-relaxed text-mute">
                 {result.title}
                 {sources.length > 0 ? ` / sentences ${formatRanges(sources)}` : ''}
               </p>

@@ -4,6 +4,7 @@ import SourcePanel from '../components/SourcePanel'
 import Workspace from '../components/Workspace'
 import { EXAMPLES, LAUNCH_EXAMPLE } from '../data/traceExamples'
 import { traceEngine } from '../engine/traceEngine'
+import { toMarkdown } from '../engine/exportMarkdown'
 import { wordCount } from '../engine/text'
 import type { TraceInput, TraceResult } from '../types'
 
@@ -27,6 +28,8 @@ export default function Trace() {
   const [runId, setRunId] = useState(0)
   const [error, setError] = useState('')
   const started = useRef(false)
+  const [undo, setUndo] = useState<TraceInput | null>(null)
+  const [copied, setCopied] = useState(false)
 
   const words = wordCount(content)
 
@@ -45,6 +48,9 @@ export default function Trace() {
   function loadExample(id: string, andRun = false) {
     const ex = EXAMPLES.find((e) => e.id === id)
     if (!ex) return
+    // Keep what was typed so loading an example can be undone.
+    if (!andRun && content.trim() && content !== ex.input.content) setUndo({ title, content })
+    else setUndo(null)
     setTitle(ex.input.title)
     setContent(ex.input.content)
     setError('')
@@ -79,6 +85,24 @@ export default function Trace() {
     return () => window.clearTimeout(t)
   }, [stage, runId])
 
+  async function copyMarkdown() {
+    if (!result) return
+    try {
+      await navigator.clipboard.writeText(toMarkdown(result))
+      setCopied(true)
+      window.setTimeout(() => setCopied(false), 2000)
+    } catch {
+      setCopied(false)
+    }
+  }
+
+  function submitShortcut(e: React.KeyboardEvent) {
+    if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) {
+      e.preventDefault()
+      run({ title, content })
+    }
+  }
+
   /* ----------------------------- input ----------------------------- */
   if (stage === 'input') {
     return (
@@ -86,7 +110,7 @@ export default function Trace() {
         <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl">New trace</h1>
         <div className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-[minmax(0,1fr)_340px]">
           <div>
-            <label htmlFor="trace-title" className="font-mono text-[11px] text-mute">
+            <label htmlFor="trace-title" className="font-mono text-xs tracking-wide text-mute">
               TITLE
             </label>
             <input
@@ -96,7 +120,7 @@ export default function Trace() {
               placeholder="Untitled trace"
               className="mb-4 mt-1 w-full border border-line bg-panel px-4 py-2.5 text-sm outline-none focus:border-signal"
             />
-            <label htmlFor="trace-text" className="font-mono text-[11px] text-mute">
+            <label htmlFor="trace-text" className="font-mono text-xs tracking-wide text-mute">
               SOURCE TEXT
             </label>
             <textarea
@@ -104,18 +128,23 @@ export default function Trace() {
               value={content}
               onChange={(e) => setContent(e.target.value)}
               placeholder="Paste notes, a transcript, research, or anything you want to make sense of."
-              className="mt-1 h-[420px] w-full resize-y border border-line bg-panel p-4 text-[13px] leading-[1.75] outline-none focus:border-signal"
+              onKeyDown={submitShortcut}
+              className="mt-1 h-[clamp(240px,50dvh,420px)] w-full resize-y border border-line bg-panel p-4 text-[13px] leading-[1.75] outline-none focus:border-signal"
             />
             <div className="mt-3 flex flex-wrap items-center justify-between gap-3">
-              <p className={`font-mono text-[11px] ${error ? 'text-signal' : 'text-mute'}`} role={error ? 'alert' : undefined}>
-                {error || `${words} words`}
+              <p className={`font-mono text-xs tracking-wide ${error ? 'text-signal' : 'text-mute'}`} role={error ? 'alert' : undefined}>
+                {error || (words < MIN_WORDS ? `${words} words, ${MIN_WORDS} minimum` : `${words} words`)}
               </p>
               <button
                 type="button"
                 onClick={() => run({ title, content })}
+                aria-keyshortcuts="Control+Enter Meta+Enter"
                 className="bg-signal px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-ink"
               >
                 Trace this
+                <span className="ml-3 hidden font-mono text-xs opacity-70 sm:inline" aria-hidden="true">
+                  Ctrl+Enter
+                </span>
               </button>
             </div>
           </div>
@@ -136,6 +165,22 @@ export default function Trace() {
                 </button>
               ))}
             </div>
+            {undo && (
+              <p className="mt-3 text-xs text-mute" role="status">
+                Your text was replaced.{' '}
+                <button
+                  type="button"
+                  className="text-signal underline underline-offset-4"
+                  onClick={() => {
+                    setTitle(undo.title)
+                    setContent(undo.content)
+                    setUndo(null)
+                  }}
+                >
+                  Undo
+                </button>
+              </p>
+            )}
             <button
               type="button"
               onClick={() => loadExample(LAUNCH_EXAMPLE.id, true)}
@@ -188,6 +233,13 @@ export default function Trace() {
       <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
         <h1 className="text-2xl font-semibold tracking-tight sm:text-3xl">{result?.title}</h1>
         <div className="flex gap-2">
+          <button
+            type="button"
+            onClick={copyMarkdown}
+            className="border border-line px-4 py-2 text-sm transition-colors hover:border-ink"
+          >
+            {copied ? 'Copied' : 'Copy as Markdown'}
+          </button>
           <button
             type="button"
             onClick={() => setStage('input')}
