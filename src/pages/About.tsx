@@ -3,50 +3,58 @@ import PageShell from './PageShell'
 
 export default function About() {
   return (
-    <PageShell title="About Trace" intro="Information has structure even when people don't give it structure.">
+    <PageShell
+      title="About Trace"
+      intro="Trace turns unstructured information into a map you can inspect, navigate, and act on."
+    >
       <div className="space-y-12 text-[17px] leading-[1.7] text-ink/85">
         <section>
-          <h2 className="text-2xl font-semibold tracking-tight text-ink">What Trace tries to recover</h2>
+          <h2 className="text-2xl font-semibold tracking-tight text-ink">Why Trace exists</h2>
           <p className="mt-3">
-            A meeting transcript or a pile of research notes reads as a single stream. Underneath it are recurring topics,
-            people tied to specific work, decisions that were made and questions nobody answered. Trace looks for those
-            pieces and the links between them, then lays them out so you can move around the material instead of reading it
-            top to bottom.
+            Important information rarely arrives neatly organised. It lives in meeting notes, transcripts, research,
+            project updates, documents, and long conversations. The useful parts are there, but they are buried in the
+            volume.
           </p>
           <p className="mt-3">
-            Every node points back to the sentences that produced it. If Trace shows a topic or a decision, you can see why
-            it exists and disagree with it.
+            Trace brings that structure to the surface. It identifies the people, topics, decisions, questions, and
+            relationships inside a body of text, then connects them in a workspace you can explore.
           </p>
         </section>
-
         <section>
-          <h2 className="text-2xl font-semibold tracking-tight text-ink">What is real in this demo</h2>
+          <h2 className="text-2xl font-semibold tracking-tight text-ink">Built for verification</h2>
           <p className="mt-3">
-            This version uses demonstration data and a local interpretation engine. There is no language model behind it.
+            Trace is designed to keep analysis tied to the source. Select an item on the map and you can trace it back to
+            the sentences that support it. That makes the result easier to inspect, question, and use without losing the
+            original context.
+          </p>
+          <p className="mt-3">
+            The goal is not to replace reading or judgment. It is to make the structure inside large amounts of information
+            easier to see.
+          </p>
+        </section>
+        <section>
+          <h2 className="text-2xl font-semibold tracking-tight text-ink">How Trace works today</h2>
+          <p className="mt-3">
+            The current web app processes the text you provide in your browser using Trace's local analysis engine. It
+            extracts structured items and relationships, then presents them as an interactive map alongside the source
+            material.
           </p>
           <ul className="mt-4 list-disc space-y-2 pl-6">
-            <li>The four examples have hand-prepared results, including their links.</li>
-            <li>
-              Text you paste goes through a rule-based reader that looks for names, repeated terms and phrases such as
-              &ldquo;agreed&rdquo; or &ldquo;unresolved&rdquo;. It works on simple notes and misses a lot.
-            </li>
-            <li>Nothing you paste is sent anywhere. It stays in your browser.</li>
+            <li>Your source text stays in your browser during the current Trace session.</li>
+            <li>Results remain connected to the source sentences they came from.</li>
+            <li>You can edit the source, run a new trace, and export the resulting analysis as Markdown.</li>
           </ul>
         </section>
-
         <section>
-          <h2 className="text-2xl font-semibold tracking-tight text-ink">What changes with a real model</h2>
+          <h2 className="text-2xl font-semibold tracking-tight text-ink">Where it is going</h2>
           <p className="mt-3">
-            The interface calls a single function, <code className="bg-line/60 px-1.5 font-mono text-[15px]">traceEngine</code>,
-            which returns a structured result. Replacing it with a model call changes the quality of the extraction and the
-            links. The map, the source highlighting and the filters stay as they are.
+            Trace is being developed as a product for working with information, not as a static document viewer. The
+            underlying experience can evolve as the analysis engine becomes more capable, while the core principle remains
+            the same: make complex information easier to understand without hiding where the conclusions came from.
           </p>
         </section>
-
         <p>
-          <Link to="/trace" className="btn btn-signal">
-            Try Trace
-          </Link>
+          <Link to="/trace" className="btn btn-signal">Start a trace</Link>
         </p>
       </div>
     </PageShell>
