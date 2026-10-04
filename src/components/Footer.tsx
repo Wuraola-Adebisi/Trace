@@ -14,6 +14,9 @@ export default function Footer() {
             Trace turns unstructured information into a structured map of topics, people, decisions, questions, and
             relationships, with the source context kept close to the analysis.
           </p>
+          <a href="mailto:hello@usetracelab.com" className="mt-4 inline-block text-sm text-mute hover:text-ink">
+            hello@usetracelab.com
+          </a>
         </div>
         <nav className="flex flex-wrap gap-x-8 gap-y-2 text-sm" aria-label="Footer">
           <Link to="/how-it-works" className="text-mute hover:text-ink">How it works</Link>
