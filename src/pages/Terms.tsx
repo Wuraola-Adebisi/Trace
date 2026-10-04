@@ -19,8 +19,7 @@ export default function Terms() {
         <section>
           <h2 className="mb-3 text-xl font-semibold text-ink">Your content</h2>
           <p>
-            You retain ownership of the text and other material you provide to Trace. The current web app processes source
-            text locally in your browser and does not upload it to a Trace server as part of the core tracing experience.
+            You retain ownership of the text and other material you provide to Trace. Trace processes source text locally in your browser and does not upload it to a Trace server as part of the tracing experience.
           </p>
           <p className="mt-4">You represent that you have the rights and permissions necessary to use the material you submit.</p>
         </section>
@@ -56,7 +55,7 @@ export default function Terms() {
         <section>
           <h2 className="mb-3 text-xl font-semibold text-ink">Availability and changes</h2>
           <p>
-            We may modify, improve, suspend, or discontinue parts of Trace as the product develops. We will make reasonable
+            We may modify, improve, suspend, or discontinue parts of Trace. We will make reasonable
             efforts to keep the service available, but continuous availability is not guaranteed.
           </p>
           <p className="mt-4">
