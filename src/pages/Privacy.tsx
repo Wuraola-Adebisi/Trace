@@ -7,23 +7,21 @@ export default function Privacy() {
         <section>
           <h2 className="mb-3 text-xl font-semibold text-ink">The short version</h2>
           <p>
-            Trace is designed to keep the text you analyse private. In the current web app, text you enter is processed
-            locally in your browser and is not uploaded to a Trace server or sent to an external AI service.
+            Trace is designed to keep the text you analyse private. Text you enter into Trace is processed locally in your browser and is not uploaded to a Trace server or sent to an external AI service.
           </p>
         </section>
         <section>
           <h2 className="mb-3 text-xl font-semibold text-ink">Information you provide</h2>
           <p>
             You can enter a title and source text into Trace, including notes, transcripts, research material, and other
-            information you want to analyse. The current product does not require an account or payment information to use
-            the core tracing experience.
+            information you want to analyse. Trace does not require an account or payment information to use its core features.
           </p>
         </section>
         <section>
           <h2 className="mb-3 text-xl font-semibold text-ink">How your source text is processed</h2>
           <p>
-            The current Trace web app runs its analysis engine in your browser. Your source text is not transmitted to a
-            Trace backend, stored in a Trace database, or submitted to an external AI model by the current product.
+            Trace runs its analysis engine in your browser. Your source text is not transmitted to a
+            Trace backend, stored in a Trace database, or submitted to an external AI model by Trace.
           </p>
           <p className="mt-4">
             Analysis state is held in the browser while you use the product. It is not intended to be a permanent cloud
@@ -33,7 +31,7 @@ export default function Privacy() {
         <section>
           <h2 className="mb-3 text-xl font-semibold text-ink">Please use appropriate care</h2>
           <p>
-            Although Trace currently keeps submitted text in the browser, you should still use reasonable care with
+            Although Trace currently keeps submitted text in your browser, you should still use reasonable care with
             sensitive information. Avoid entering passwords, payment card details, government identification numbers,
             health records, or confidential information unless you understand the environment in which you are using Trace
             and are authorised to process that information.
@@ -56,9 +54,7 @@ export default function Privacy() {
             and are responsible for their own privacy practices.
           </p>
           <p className="mt-4">
-            If Trace introduces analytics, accounts, cloud processing, external AI services, integrations, or other
-            functionality that materially changes how information is handled, this policy will be updated before or when
-            that functionality is introduced.
+            If Trace introduces analytics, accounts, cloud processing, external AI services, integrations, or other functionality that materially changes how information is handled, this policy will be updated to reflect those changes.
           </p>
         </section>
         <section>
