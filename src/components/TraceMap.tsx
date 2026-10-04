@@ -45,12 +45,7 @@ export default function TraceMap({ result, selectedId, onSelect, filter = 'all',
       role="group"
       aria-label={`Relationship map for ${result.title}`}
     >
-      <defs>
-        <pattern id="trace-dots" width="24" height="24" patternUnits="userSpaceOnUse">
-          <circle cx="1.5" cy="1.5" r="1" className="fill-line" />
-        </pattern>
-      </defs>
-      <rect width={VIEW.w} height={VIEW.h} fill="url(#trace-dots)" onClick={() => onSelect(null)} />
+      <rect width={VIEW.w} height={VIEW.h} fill="transparent" onClick={() => onSelect(null)} />
 
       {showEdges && (
         <g>

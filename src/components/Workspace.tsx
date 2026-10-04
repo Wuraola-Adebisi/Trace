@@ -3,6 +3,7 @@ import { formatRanges, nodeSources } from '../engine/graph'
 import { flattenSentences } from '../engine/text'
 import type { Filter, TraceResult } from '../types'
 import InsightPanel from './InsightPanel'
+import MapViewport from './MapViewport'
 import SourcePanel from './SourcePanel'
 import TraceMap from './TraceMap'
 
@@ -40,7 +41,7 @@ export default function Workspace({ result, content, animate = false }: Props) {
   const panel = 'flex min-h-0 flex-col border border-line bg-panel'
 
   return (
-    <div className="grid grid-cols-1 gap-3 md:grid-cols-2 xl:grid-cols-[300px_minmax(0,1fr)_310px]">
+    <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-[280px_minmax(0,1fr)_300px]">
       <section className={`${panel} order-3 h-[420px] md:order-2 md:h-[520px] xl:order-1 xl:h-[clamp(560px,calc(100dvh-11rem),800px)]`} aria-label="Source">
         <SourcePanel title={result.title} content={content} highlight={highlight} />
       </section>
@@ -69,7 +70,7 @@ export default function Workspace({ result, content, animate = false }: Props) {
           </div>
         </div>
         <p className="border-b border-line px-4 py-2 text-xs text-mute sm:hidden">Drag sideways to see the whole map.</p>
-        <div className="min-h-0 flex-1 overflow-auto xl:overflow-hidden">
+        <MapViewport>
           <TraceMap
             result={result}
             selectedId={selectedId}
@@ -77,7 +78,7 @@ export default function Workspace({ result, content, animate = false }: Props) {
             filter={filter}
             animate={animate}
           />
-        </div>
+        </MapViewport>
         <div className="flex shrink-0 flex-wrap items-center gap-x-5 gap-y-1 border-t border-line px-4 py-2 font-mono text-xs text-mute">
           <span className="flex items-center gap-1.5"><i className="inline-block h-2.5 w-4 border border-ink bg-panel" />{result.kindLabels.topic}</span>
           <span className="flex items-center gap-1.5"><i className="inline-block h-2.5 w-4 bg-ink" />{result.kindLabels.person}</span>

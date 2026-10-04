@@ -106,7 +106,7 @@ export default function Trace() {
   /* ----------------------------- input ----------------------------- */
   if (stage === 'input') {
     return (
-      <div className="mx-auto max-w-[1480px] px-4 pb-4 pt-10 sm:px-6">
+      <div className="mx-auto max-w-[1400px] px-5 pb-4 pt-10 sm:px-8 lg:px-12">
         <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl">New trace</h1>
         <div className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-[minmax(0,1fr)_340px]">
           <div>
@@ -139,7 +139,7 @@ export default function Trace() {
                 type="button"
                 onClick={() => run({ title, content })}
                 aria-keyshortcuts="Control+Enter Meta+Enter"
-                className="bg-signal px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-ink"
+                className="btn btn-signal"
               >
                 Trace this
                 <span className="ml-3 hidden font-mono text-xs opacity-70 sm:inline" aria-hidden="true">
@@ -184,7 +184,7 @@ export default function Trace() {
             <button
               type="button"
               onClick={() => loadExample(LAUNCH_EXAMPLE.id, true)}
-              className="mt-5 w-full border border-ink px-4 py-3 text-sm font-medium transition-colors hover:bg-ink hover:text-paper"
+              className="btn btn-outline mt-5 w-full"
             >
               Run the product meeting now
             </button>
@@ -200,9 +200,9 @@ export default function Trace() {
   /* --------------------------- processing --------------------------- */
   if (stage === 'processing') {
     return (
-      <div className="mx-auto max-w-[1480px] px-4 pb-4 pt-10 sm:px-6">
+      <div className="mx-auto max-w-[1400px] px-5 pb-4 pt-10 sm:px-8 lg:px-12">
         <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl">{PHASES[phase]}</h1>
-        <div className="mt-8 grid grid-cols-1 gap-3 md:grid-cols-[minmax(0,1fr)_360px]">
+        <div className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-[minmax(0,1fr)_360px]">
           <div className="h-[520px] border border-line bg-panel">
             <SourcePanel title={result?.title ?? title} content={content} />
           </div>
@@ -229,21 +229,21 @@ export default function Trace() {
 
   /* ----------------------------- result ----------------------------- */
   return (
-    <div className="mx-auto max-w-[1480px] px-4 pb-4 pt-8 sm:px-6">
+    <div className="mx-auto max-w-[1400px] px-5 pb-4 pt-8 sm:px-8 lg:px-12">
       <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
         <h1 className="text-2xl font-semibold tracking-tight sm:text-3xl">{result?.title}</h1>
         <div className="flex gap-2">
           <button
             type="button"
             onClick={copyMarkdown}
-            className="border border-line px-4 py-2 text-sm transition-colors hover:border-ink"
+            className="btn btn-sm btn-quiet font-normal"
           >
             {copied ? 'Copied' : 'Copy as Markdown'}
           </button>
           <button
             type="button"
             onClick={() => setStage('input')}
-            className="border border-line px-4 py-2 text-sm transition-colors hover:border-ink"
+            className="btn btn-sm btn-quiet font-normal"
           >
             Edit text
           </button>
@@ -255,7 +255,7 @@ export default function Trace() {
               setResult(null)
               setStage('input')
             }}
-            className="bg-ink px-4 py-2 text-sm font-medium text-paper transition-colors hover:bg-signal"
+            className="btn btn-sm btn-ink"
           >
             New trace
           </button>

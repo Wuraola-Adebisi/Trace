@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react'
 import { LAUNCH_EXAMPLE } from '../data/traceExamples'
 import { flattenSentences } from '../engine/text'
 import InsightPanel from './InsightPanel'
+import MapViewport from './MapViewport'
 import TraceMap from './TraceMap'
 
 function FlowArrow() {
@@ -39,7 +40,7 @@ export default function HeroDemo() {
   return (
     <div>
       <div className="flex flex-col items-stretch lg:flex-row lg:items-center">
-        <div className="border border-line bg-panel p-5 lg:w-[38%]">
+        <div className="border border-line bg-panel p-5 sm:p-6 lg:w-[38%]">
           <p className="font-mono text-xs tracking-wide text-mute">RAW INPUT</p>
           <p className="mt-3 text-[13px] leading-[1.75] text-ink/85">{excerpt.join(' ')}</p>
           <p className="mt-3 font-mono text-xs tracking-wide text-mute">+ {sentences.length - 5} more sentences</p>
@@ -47,7 +48,7 @@ export default function HeroDemo() {
         <div className="self-center">
           <FlowArrow />
         </div>
-        <div className="grid flex-1 grid-cols-2 gap-x-6 gap-y-4 border border-line bg-panel p-5">
+        <div className="grid flex-1 grid-cols-2 gap-x-6 gap-y-5 border border-line bg-panel p-5 sm:p-6">
           {columns.map((c) => (
             <div key={c.title}>
               <p className="font-mono text-xs tracking-wide text-mute">{c.title.toUpperCase()}</p>
@@ -61,15 +62,18 @@ export default function HeroDemo() {
         </div>
       </div>
 
-      <div className="mt-3 grid grid-cols-1 gap-3 xl:grid-cols-[minmax(0,1fr)_340px]">
-        <div className="min-h-0 overflow-auto border border-line bg-panel">
+      <div className="mt-4 grid grid-cols-1 gap-4 xl:grid-cols-[minmax(0,1fr)_340px]">
+        <div className="flex min-h-0 flex-col border border-line bg-panel xl:h-[640px]">
           <div className="panel-head">
             <span>MAP</span>
             <span>Select a node</span>
           </div>
-          <TraceMap result={result} selectedId={selectedId} onSelect={setSelectedId} animate />
+          <p className="border-b border-line px-4 py-2 text-xs text-mute sm:hidden">Drag sideways to see the whole map.</p>
+          <MapViewport>
+            <TraceMap result={result} selectedId={selectedId} onSelect={setSelectedId} animate />
+          </MapViewport>
         </div>
-        <div className="h-[520px] border border-line bg-panel xl:h-auto">
+        <div className="h-[520px] border border-line bg-panel xl:h-[640px]">
           <InsightPanel result={result} sentences={sentences} selectedId={selectedId} onSelect={setSelectedId} />
         </div>
       </div>

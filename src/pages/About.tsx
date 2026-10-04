@@ -44,7 +44,7 @@ export default function About() {
         </section>
 
         <p>
-          <Link to="/trace" className="bg-signal px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-ink">
+          <Link to="/trace" className="btn btn-signal">
             Try Trace
           </Link>
         </p>

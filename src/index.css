@@ -34,10 +34,36 @@ body {
 }
 
 @layer components {
+  .btn {
+    @apply inline-flex items-center justify-center px-6 py-3 text-sm font-medium transition-colors;
+  }
+  .btn-sm {
+    @apply px-4 py-2;
+  }
+  .btn-signal {
+    @apply bg-signal text-white hover:bg-ink;
+  }
+  .btn-ink {
+    @apply bg-ink text-paper hover:bg-signal;
+  }
+  .btn-outline {
+    @apply border border-ink text-ink hover:bg-ink hover:text-paper;
+  }
+  .btn-quiet {
+    @apply border border-line text-ink hover:border-ink;
+  }
+
   /* One header style for Source, Map and Insight panels so baselines line up */
   .panel-head {
     @apply flex min-h-10 shrink-0 items-center justify-between gap-2 border-b border-line px-4 font-mono text-xs tracking-wide text-mute;
   }
+}
+
+/* Dot grid behind the map, spanning the whole panel instead of only the SVG */
+.map-dots {
+  background-image: radial-gradient(circle, var(--color-line) 1px, transparent 1.2px);
+  background-size: 24px 24px;
+  background-position: 12px 12px;
 }
 
 /* Source sentences that caused a node to exist */
