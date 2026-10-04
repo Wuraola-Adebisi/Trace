@@ -31,7 +31,7 @@ export default function Home() {
       <section className="mx-auto max-w-[1400px] px-5 pb-12 pt-14 sm:px-8 lg:px-12 sm:pb-16 sm:pt-20">
         <p className="inline-flex items-center gap-2 font-mono text-xs tracking-wide text-mute">
           <span className="inline-block h-2 w-2 bg-signal" />
-          AI INFORMATION MAPPING
+          INFORMATION MAPPING
         </p>
         <h1 className="mt-5 max-w-5xl text-balance text-[clamp(3rem,8.5vw,7.5rem)] font-semibold leading-[0.95] tracking-[-0.045em]">
           Make sense of the mess.
@@ -43,13 +43,13 @@ export default function Home() {
           </p>
           <div className="flex flex-wrap gap-3">
             <Link to={`/trace?example=${LAUNCH_EXAMPLE.id}`} className="btn btn-signal">
-              Try an example
+              Explore Trace
             </Link>
             <Link
               to="/trace"
               className="btn btn-outline"
             >
-              Paste your own
+              Start a trace
             </Link>
           </div>
         </div>
@@ -61,7 +61,7 @@ export default function Home() {
 
       <section className="mx-auto mt-16 max-w-[1400px] px-5 sm:mt-24 sm:px-8 lg:px-12">
         <h2 className="max-w-2xl text-balance text-3xl font-semibold leading-tight tracking-tight sm:text-4xl">
-          The structure was always in the text. Trace pulls it out.
+          The structure is already there. Trace makes it visible.
         </h2>
         <div className="mt-10 grid gap-px border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
           {PARTS.map((p) => (
@@ -77,7 +77,7 @@ export default function Home() {
       <section className="mx-auto mt-16 max-w-[1400px] px-5 sm:mt-24 sm:px-8 lg:px-12">
         <div className="flex flex-col gap-6 border border-ink bg-ink p-8 text-paper sm:p-12 lg:p-16 md:flex-row md:items-center md:justify-between">
           <p className="max-w-xl text-balance text-2xl font-semibold leading-snug tracking-tight sm:text-3xl">
-            Paste something messy and see what is in it.
+            Bring your notes, research, or conversations. See what is inside them.
           </p>
           <Link
             to="/trace"
