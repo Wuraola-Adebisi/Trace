@@ -1,138 +1,92 @@
-import PageShell from "./PageShell";
+import PageShell from './PageShell'
 
 export default function Terms() {
   return (
-    <PageShell title="Terms of Usage" intro="Last updated September 2026.">
+    <PageShell title="Terms of Use" intro="Last updated October 2026.">
       <div className="space-y-10 text-[17px] leading-[1.7] text-ink/85">
         <section>
-          <h2 className="mb-3 text-xl font-semibold text-ink">About Trace</h2>
+          <h2 className="mb-3 text-xl font-semibold text-ink">Using Trace</h2>
           <p>
-            Trace is an early-stage portfolio demonstration designed to show how
-            unstructured information can be transformed into structured topics,
-            people, decisions, questions, and relationships.
+            Trace is a tool for turning source material into a structured, interactive view of the information it
+            contains. You may use the service for lawful purposes and for material you are authorised to analyse.
           </p>
           <p className="mt-4">
-            The current version is a prototype and should not be treated as a
-            production information-management service.
+            You are responsible for the content you provide to Trace and for ensuring that your use of that content does
+            not violate applicable law, confidentiality obligations, intellectual property rights, or the rights of other
+            people.
           </p>
         </section>
-
         <section>
-          <h2 className="mb-3 text-xl font-semibold text-ink">
-            Use of the demo
-          </h2>
+          <h2 className="mb-3 text-xl font-semibold text-ink">Your content</h2>
           <p>
-            You may use Trace to explore its information-mapping interface and
-            test it with suitable text. You are responsible for the content you
-            choose to enter into the demo.
+            You retain ownership of the text and other material you provide to Trace. The current web app processes source
+            text locally in your browser and does not upload it to a Trace server as part of the core tracing experience.
+          </p>
+          <p className="mt-4">You represent that you have the rights and permissions necessary to use the material you submit.</p>
+        </section>
+        <section>
+          <h2 className="mb-3 text-xl font-semibold text-ink">Results and accuracy</h2>
+          <p>
+            Trace analyses information and presents relationships, topics, people, decisions, questions, and other
+            extracted material. Those results may be incomplete, inaccurate, or missing important context.
           </p>
           <p className="mt-4">
-            You must not use Trace to process unlawful content or information
-            that you do not have the right to use or disclose.
+            Treat Trace's output as an aid to understanding, not as a substitute for reviewing the underlying source
+            material. You are responsible for verifying results before relying on them for consequential decisions.
           </p>
         </section>
-
         <section>
-          <h2 className="mb-3 text-xl font-semibold text-ink">
-            Accuracy of results
-          </h2>
+          <h2 className="mb-3 text-xl font-semibold text-ink">Acceptable use</h2>
           <p>
-            Trace's current processing is based on example data and
-            deterministic rules. Its output may be incomplete, inaccurate,
-            oversimplified, or incorrectly identify relationships between pieces
-            of information.
+            You may not use Trace to facilitate unlawful activity, infringe another person's rights, interfere with the
+            service, attempt to gain unauthorised access to systems or data, or introduce malicious code or content.
+          </p>
+        </section>
+        <section>
+          <h2 className="mb-3 text-xl font-semibold text-ink">Intellectual property</h2>
+          <p>
+            Trace, including its software, interface, branding, visual design, and original product materials, is owned by
+            or licensed to the Trace team and is protected by applicable intellectual property laws.
           </p>
           <p className="mt-4">
-            You should review the original source material rather than treating
-            a Trace-generated map or insight as an authoritative representation
-            of that material.
+            These Terms do not transfer ownership of Trace or its underlying technology to you. They also do not transfer
+            ownership of content you provide to Trace.
           </p>
         </section>
-
         <section>
-          <h2 className="mb-3 text-xl font-semibold text-ink">
-            No professional advice
-          </h2>
+          <h2 className="mb-3 text-xl font-semibold text-ink">Availability and changes</h2>
           <p>
-            Trace does not provide legal, financial, medical, academic,
-            employment, compliance, or other professional advice. Information
-            produced by the demo should not be used as the sole basis for
-            decisions that could materially affect you or another person.
-          </p>
-        </section>
-
-        <section>
-          <h2 className="mb-3 text-xl font-semibold text-ink">
-            Example content
-          </h2>
-          <p>
-            Example documents, people, organisations, discussions, and other
-            information shown throughout Trace are fictional or created for
-            demonstration purposes unless explicitly stated otherwise.
+            We may modify, improve, suspend, or discontinue parts of Trace as the product develops. We will make reasonable
+            efforts to keep the service available, but continuous availability is not guaranteed.
           </p>
           <p className="mt-4">
-            Any resemblance between example content and actual people,
-            organisations, events, or documents is coincidental.
+            Features, processing methods, limits, and supported integrations may change over time. Where a change
+            materially affects these Terms, the updated version will be posted here.
           </p>
         </section>
-
-        <section>
-          <h2 className="mb-3 text-xl font-semibold text-ink">
-            Intellectual property
-          </h2>
-          <p>
-            The Trace interface, visual design, code, branding, and original
-            product materials are part of the demonstration project and may not
-            be copied, reproduced, or redistributed as though they were your own
-            work without permission.
-          </p>
-          <p className="mt-4">
-            You retain responsibility for any text or other material you choose
-            to enter into the demo, including ensuring that you have the
-            necessary rights to use it.
-          </p>
-        </section>
-
-        <section>
-          <h2 className="mb-3 text-xl font-semibold text-ink">Availability</h2>
-          <p>
-            Trace is provided on an experimental basis. The demo may be changed,
-            interrupted, restricted, or discontinued at any time without notice.
-            No guarantee is made that any particular feature will remain
-            available.
-          </p>
-        </section>
-
         <section>
           <h2 className="mb-3 text-xl font-semibold text-ink">Disclaimer</h2>
           <p>
-            Trace is provided “as is” and “as available”, without warranties of
-            any kind, to the extent permitted by applicable law. No guarantee is
-            made regarding the accuracy, completeness, reliability,
-            availability, or suitability of its output for any particular
-            purpose.
+            To the extent permitted by applicable law, Trace is provided on an “as is” and “as available” basis. No
+            warranty is made that the service or its results will always be accurate, complete, secure, uninterrupted, or
+            suitable for a particular purpose.
+          </p>
+          <p className="mt-4">
+            Nothing on Trace constitutes legal, financial, medical, employment, compliance, or other professional advice.
           </p>
         </section>
-
         <section>
-          <h2 className="mb-3 text-xl font-semibold text-ink">
-            Changes to these terms
-          </h2>
+          <h2 className="mb-3 text-xl font-semibold text-ink">Changes to these Terms</h2>
           <p>
-            These Terms of Usage may be updated as Trace evolves. Any changes
-            will be reflected on this page with an updated revision date.
+            These Terms of Use may be updated as Trace evolves. Continued use of Trace after an updated version is posted
+            constitutes acceptance of the revised Terms to the extent permitted by applicable law.
           </p>
         </section>
-
         <section>
           <h2 className="mb-3 text-xl font-semibold text-ink">Contact</h2>
-          <p>
-            If you have questions about these Terms of Usage or the Trace
-            demonstration, please use the contact method provided on the
-            website.
-          </p>
+          <p>Questions about these Terms can be raised through the contact channel made available by Trace.</p>
         </section>
       </div>
     </PageShell>
-  );
+  )
 }
