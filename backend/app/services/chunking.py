@@ -66,18 +66,24 @@ def chunk_text(
         if end <= start:
             end = proposed_end
 
-        overlapping_units = [
-            unit for unit in source_units
-            if unit.char_start < end and unit.char_end > start
-        ]
-        chunk = text[start:end].strip()
+        raw_chunk = text[start:end]
+        leading_trim = len(raw_chunk) - len(raw_chunk.lstrip())
+        trailing_trim = len(raw_chunk.rstrip())
+        actual_start = start + leading_trim
+        actual_end = start + trailing_trim
+        chunk = text[actual_start:actual_end]
+
         if chunk:
+            overlapping_units = [
+                unit for unit in source_units
+                if unit.char_start < actual_end and unit.char_end > actual_start
+            ]
             chunks.append(
                 DocumentChunk(
                     chunk_index=len(chunks),
                     text=chunk,
-                    char_start=start,
-                    char_end=end,
+                    char_start=actual_start,
+                    char_end=actual_end,
                     page_numbers=sorted(
                         {unit.page_number for unit in overlapping_units if unit.page_number is not None}
                     ),
