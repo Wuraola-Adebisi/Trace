@@ -158,15 +158,15 @@ export default function Home() {
               <div className="mt-6 grid gap-6 sm:grid-cols-2">
                 <figure>
                   <blockquote className="text-base leading-relaxed text-ink/85">
-                    “Trace helped make meeting notes easier to comprehend, identify the stakeholders involved, clarify
-                    who was responsible for what, and see how many items needed to be tracked.”
+                    Trace helped make meeting notes easier to comprehend, identify the stakeholders involved, clarify
+                    who was responsible for what, and see how many items needed to be tracked.
                   </blockquote>
                   <figcaption className="mt-3 text-xs text-mute">Early Trace user</figcaption>
                 </figure>
                 <figure>
                   <blockquote className="text-base leading-relaxed text-ink/85">
-                    “Knowing that meeting notes can be reviewed with Trace afterwards has made it easier to feel
-                    confident about catching details that might have been missed during the discussion.”
+                    Knowing that meeting notes can be reviewed with Trace afterwards has made it easier to feel
+                    confident about catching details that might have been missed during the discussion.
                   </blockquote>
                   <figcaption className="mt-3 text-xs text-mute">Early Trace user</figcaption>
                 </figure>
