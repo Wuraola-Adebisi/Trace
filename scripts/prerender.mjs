@@ -14,25 +14,25 @@ function escapeAttribute(value) {
 }
 
 function setMeta(html, attribute, key, content) {
-  const expression = new RegExp(\`<meta(?=[^>]*\${attribute}=["']\${key}["'])[^>]*>\`, 'i')
-  const tag = \`<meta \${attribute}="\${key}" content="\${escapeAttribute(content)}" />\`
+  const expression = new RegExp(`<meta(?=[^>]*${attribute}=["']${key}["'])[^>]*>`, 'i')
+  const tag = `<meta ${attribute}="${key}" content="${escapeAttribute(content)}" />`
   if (expression.test(html)) return html.replace(expression, tag)
-  return html.replace('</head>', \`    \${tag}\n  </head>\`)
+  return html.replace('</head>', `    ${tag}\n  </head>`)
 }
 
 function setCanonical(html, url) {
-  const tag = \`<link rel="canonical" href="\${escapeAttribute(url)}" />\`
+  const tag = `<link rel="canonical" href="${escapeAttribute(url)}" />`
   const expression = /<link(?=[^>]*\brel=["']canonical["'])[^>]*>/i
   if (expression.test(html)) return html.replace(expression, tag)
-  return html.replace('</head>', \`    \${tag}\n  </head>\`)
+  return html.replace('</head>', `    ${tag}\n  </head>`)
 }
 
 function applyMetadata(html, route) {
   const page = PAGE_META[route]
-  if (!page) throw new Error(\`Missing page metadata for \${route}\`)
+  if (!page) throw new Error(`Missing page metadata for ${route}`)
 
   const canonical = new URL(route, SITE_URL).toString()
-  let output = html.replace(/<title>[\s\S]*?<\/title>/i, \`<title>\${escapeAttribute(page.title)}</title>\`)
+  let output = html.replace(/<title>[\s\S]*?<\/title>/i, `<title>${escapeAttribute(page.title)}</title>`)
 
   output = setMeta(output, 'name', 'description', page.description)
   output = setMeta(output, 'name', 'robots', page.robots ?? 'index, follow, max-image-preview:large')
@@ -58,12 +58,12 @@ for (const route of ROUTES) {
   const markup = route === '/trace' ? '' : render(route)
 
   if (route !== '/trace' && !markup.trim()) {
-    throw new Error(\`Prerender produced empty markup for \${route}\`)
+    throw new Error(`Prerender produced empty markup for ${route}`)
   }
 
   const html = routeHtml.replace(
     /<div id="root">[\s\S]*?<\/div>/,
-    \`<div id="root">\${markup}</div>\`,
+    `<div id="root">${markup}</div>`,
   )
   const outputPath = route === '/'
     ? resolve(DIST, 'index.html')
@@ -71,7 +71,7 @@ for (const route of ROUTES) {
 
   await mkdir(dirname(outputPath), { recursive: true })
   await writeFile(outputPath, html)
-  console.log(\`Prerendered \${route} -> \${outputPath}\`)
+  console.log(`Prerendered ${route} -> ${outputPath}`)
 }
 
-console.log(\`Prerendered \${ROUTES.length} routes.\`)
+console.log(`Prerendered ${ROUTES.length} routes.`)
