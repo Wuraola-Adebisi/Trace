@@ -60,7 +60,7 @@ export default function Footer() {
                 </Link>
               ))}
             </div>
-          </div>
+          </nav>
         </div>
 
         <div className="mt-12 flex flex-col gap-3 border-t border-line pt-5 text-xs text-mute sm:mt-14 sm:flex-row sm:items-center sm:justify-between">

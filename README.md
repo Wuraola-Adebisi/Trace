@@ -64,5 +64,6 @@ Trace is an early product prototype. The current browser experience uses determi
 - [AI architecture](docs/AI_ARCHITECTURE.md)
 - [AI evaluation plan](docs/AI_EVALUATION.md)
 - [Backend development guide](backend/README.md)
+- [Static route rendering and SEO](docs/STATIC_PRERENDERING.md)
 
 The current traction baseline of 40 users is founder-reported and has not yet been verified against an analytics export. Qualitative feedback and future product metrics are documented separately from implemented capabilities.

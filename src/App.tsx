@@ -9,37 +9,7 @@ import HowItWorks from './pages/HowItWorks'
 import Privacy from './pages/Privacy'
 import Terms from './pages/Terms'
 import Trace from './pages/Trace'
-
-const PAGE_META: Record<string, { title: string; description: string }> = {
-  '/': {
-    title: 'Trace — Make sense of the mess',
-    description: 'Make meeting notes, project documents and research easier to understand. See the people, topics, decisions and questions inside them.',
-  },
-  '/how-it-works': {
-    title: 'How Trace works',
-    description: 'See how Trace analyses unstructured information and connects people, topics, decisions and questions to their source material.',
-  },
-  '/examples': {
-    title: 'Trace examples',
-    description: 'Explore examples of how Trace turns unstructured notes into a navigable map of important information.',
-  },
-  '/trace': {
-    title: 'Try Trace',
-    description: 'Explore your notes and text with Trace. Surface topics, people, decisions, questions and relationships.',
-  },
-  '/about': {
-    title: 'About Trace',
-    description: 'Learn why Trace exists, what early users say about it and how the product is being developed.',
-  },
-  '/privacy': {
-    title: 'Privacy policy',
-    description: 'Read how Trace handles information submitted through the product.',
-  },
-  '/terms': {
-    title: 'Terms of use',
-    description: 'Read the terms that apply to using Trace.',
-  },
-}
+import { getPageMetadata, SITE_URL } from './seo'
 
 function ScrollToTop() {
   const { pathname } = useLocation()
@@ -53,7 +23,7 @@ function PageMetadata() {
   const { pathname } = useLocation()
 
   useEffect(() => {
-    const page = PAGE_META[pathname] ?? PAGE_META['/']
+    const page = getPageMetadata(pathname)
     document.title = page.title
 
     let description = document.querySelector<HTMLMetaElement>('meta[name="description"]')
@@ -64,7 +34,7 @@ function PageMetadata() {
     }
     description.content = page.description
 
-    const canonicalUrl = new URL(pathname, 'https://www.usetracelab.com')
+    const canonicalUrl = new URL(pathname, SITE_URL)
     let canonical = document.querySelector<HTMLLinkElement>('link[rel="canonical"]')
     if (!canonical) {
       canonical = document.createElement('link')
@@ -83,6 +53,14 @@ function PageMetadata() {
     if (twitterTitle) twitterTitle.content = page.title
     const twitterDescription = document.querySelector<HTMLMetaElement>('meta[name="twitter:description"]')
     if (twitterDescription) twitterDescription.content = page.description
+
+    let robots = document.querySelector<HTMLMetaElement>('meta[name="robots"]')
+    if (!robots) {
+      robots = document.createElement('meta')
+      robots.name = 'robots'
+      document.head.appendChild(robots)
+    }
+    robots.content = page.robots ?? 'index, follow, max-image-preview:large'
   }, [pathname])
 
   return null
