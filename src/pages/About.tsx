@@ -39,8 +39,7 @@ export default function About() {
                 was responsible for what, and see how many items needed to be tracked.
               </blockquote>
               <figcaption className="mt-6 border-t border-line pt-4">
-                <span className="block font-semibold text-ink">Demola</span>
-                <span className="text-sm text-mute">Early Trace user</span>
+                <span className="block font-semibold text-ink">Early Trace user</span>
               </figcaption>
             </figure>
 
@@ -50,8 +49,7 @@ export default function About() {
                 about catching details that might have been missed during the discussion.
               </blockquote>
               <figcaption className="mt-6 border-t border-line pt-4">
-                <span className="block font-semibold text-ink">Sarah</span>
-                <span className="text-sm text-mute">Early Trace user</span>
+                <span className="block font-semibold text-ink">Early Trace user</span>
               </figcaption>
             </figure>
           </div>
