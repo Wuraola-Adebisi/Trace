@@ -51,3 +51,18 @@ Relationship mapping
 Interactive information map
         ↓
 Source-backed insights
+
+## Development status
+
+Trace is an early product prototype. The current browser experience uses deterministic, rule-based extraction. A separate backend foundation is being developed for source-preserving PDF/DOCX ingestion and future AI integration. No model provider is currently connected, and persistent workspaces, semantic retrieval and AI-generated answers are not yet implemented.
+
+## Product evidence and technical roadmap
+
+- [Usage and traction record](docs/USAGE_AND_TRACTION.md)
+- [Product analytics plan](docs/PRODUCT_ANALYTICS.md)
+- [Technical readiness and production roadmap](docs/TECHNICAL_READINESS.md)
+- [AI architecture](docs/AI_ARCHITECTURE.md)
+- [AI evaluation plan](docs/AI_EVALUATION.md)
+- [Backend development guide](backend/README.md)
+
+The current traction baseline of 40 users is founder-reported and has not yet been verified against an analytics export. Qualitative feedback and future product metrics are documented separately from implemented capabilities.
