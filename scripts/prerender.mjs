@@ -1,8 +1,6 @@
 import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import { dirname, resolve } from 'node:path'
-import { pathToFileURL } from 'node:url'
-import { render } from '../dist-server/entry-server.js'
-import { PAGE_META, SITE_URL, SOCIAL_IMAGE } from '../src/seo.ts'
+import { render, PAGE_META, SITE_URL, SOCIAL_IMAGE } from '../dist-server/entry-server.js'
 
 const DIST = resolve('dist')
 const ROUTES = ['/', '/how-it-works', '/examples', '/about', '/privacy', '/terms', '/trace']
@@ -15,53 +13,38 @@ function escapeAttribute(value) {
     .replaceAll('>', '&gt;')
 }
 
-function setMeta(html, selector, tag) {
-  const escaped = escapeAttribute(tag.content)
-  const expression = new RegExp(`<meta(?=[^>]*\\b${selector})[^>]*>`, 'i')
-  const replacement = tag.attribute === 'property'
-    ? `<meta property="${tag.key}" content="${escaped}" />`
-    : `<meta name="${tag.key}" content="${escaped}" />`
-
-  if (expression.test(html)) return html.replace(expression, replacement)
-  return html.replace('</head>', `    ${replacement}\\n  </head>`)
+function setMeta(html, attribute, key, content) {
+  const expression = new RegExp(`<meta(?=[^>]*${attribute}=["']${key}["'])[^>]*>`, 'i')
+  const tag = `<meta ${attribute}="${key}" content="${escapeAttribute(content)}" />`
+  if (expression.test(html)) return html.replace(expression, tag)
+  return html.replace('</head>', `    ${tag}\\n  </head>`)
 }
 
 function setCanonical(html, url) {
   const tag = `<link rel="canonical" href="${escapeAttribute(url)}" />`
-  if (/<link(?=[^>]*\\brel=["']canonical["'])[^>]*>/i.test(html)) {
-    return html.replace(/<link(?=[^>]*\\brel=["']canonical["'])[^>]*>/i, tag)
-  }
+  const expression = /<link(?=[^>]*\\brel=["']canonical["'])[^>]*>/i
+  if (expression.test(html)) return html.replace(expression, tag)
   return html.replace('</head>', `    ${tag}\\n  </head>`)
 }
 
 function applyMetadata(html, route) {
   const page = PAGE_META[route]
-  const canonical = new URL(route, SITE_URL).toString()
-  const title = escapeAttribute(page.title)
-  let output = html.replace(/<title>[\\s\\S]*?<\\/title>/i, `<title>${title}</title>`)
+  if (!page) throw new Error(`Missing page metadata for ${route}`)
 
-  output = setMeta(output, 'name=["']description["']', {
-    attribute: 'name', key: 'description', content: page.description,
-  })
-  output = setMeta(output, 'name=["']robots["']', {
-    attribute: 'name', key: 'robots', content: page.robots ?? 'index, follow, max-image-preview:large',
-  })
+  const canonical = new URL(route, SITE_URL).toString()
+  let output = html.replace(/<title>[\\s\\S]*?<\\/title>/i, `<title>${escapeAttribute(page.title)}</title>`)
+
+  output = setMeta(output, 'name', 'description', page.description)
+  output = setMeta(output, 'name', 'robots', page.robots ?? 'index, follow, max-image-preview:large')
   output = setCanonical(output, canonical)
 
-  const tags = [
-    { attribute: 'property', key: 'og:title', content: page.title },
-    { attribute: 'property', key: 'og:description', content: page.description },
-    { attribute: 'property', key: 'og:url', content: canonical },
-    { attribute: 'property', key: 'og:image', content: SOCIAL_IMAGE },
-    { attribute: 'name', key: 'twitter:title', content: page.title },
-    { attribute: 'name', key: 'twitter:description', content: page.description },
-    { attribute: 'name', key: 'twitter:image', content: SOCIAL_IMAGE },
-  ]
-
-  for (const tag of tags) {
-    const selector = `${tag.attribute}=["']${tag.key}["']`
-    output = setMeta(output, selector, tag)
-  }
+  output = setMeta(output, 'property', 'og:title', page.title)
+  output = setMeta(output, 'property', 'og:description', page.description)
+  output = setMeta(output, 'property', 'og:url', canonical)
+  output = setMeta(output, 'property', 'og:image', SOCIAL_IMAGE)
+  output = setMeta(output, 'name', 'twitter:title', page.title)
+  output = setMeta(output, 'name', 'twitter:description', page.description)
+  output = setMeta(output, 'name', 'twitter:image', SOCIAL_IMAGE)
 
   return output
 }
@@ -70,6 +53,8 @@ const template = await readFile(resolve(DIST, 'index.html'), 'utf8')
 
 for (const route of ROUTES) {
   const routeHtml = applyMetadata(template, route)
+  // Keep the interactive workspace client-rendered, but give it a route-specific,
+  // noindex document so crawlers do not mistake it for the marketing homepage.
   const markup = route === '/trace' ? '' : render(route)
 
   if (route !== '/trace' && !markup.trim()) {
